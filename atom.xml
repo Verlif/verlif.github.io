@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://verlif.top</id>
     <title>乱七八糟</title>
-    <updated>2021-02-23T03:58:43.050Z</updated>
+    <updated>2021-03-03T06:01:49.907Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://verlif.top"/>
     <link rel="self" href="https://verlif.top/atom.xml"/>
@@ -10,6 +10,142 @@
     <logo>https://verlif.top/images/avatar.png</logo>
     <icon>https://verlif.top/favicon.ico</icon>
     <rights>All rights reserved 2021, 乱七八糟</rights>
+    <entry>
+        <title type="html"><![CDATA[Centos下启动Minecraft服务器]]></title>
+        <id>https://verlif.top/post/minecraft_server_centos/</id>
+        <link href="https://verlif.top/post/minecraft_server_centos/">
+        </link>
+        <updated>2021-02-23T03:34:53.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<!-- more -->
+<h1 id="开始-准备运行环境">开始 —— 准备运行环境</h1>
+<p>** 安装Java环境与简单的管理软件 **</p>
+<h2 id="进行环境配置">进行环境配置</h2>
+<ol>
+<li>安装screen，用于服务器后台管理</li>
+</ol>
+<blockquote>
+<p>yum install screen</p>
+</blockquote>
+<ol start="2">
+<li>安装lrzsz，用于上传和下载</li>
+</ol>
+<blockquote>
+<p>yum install lrzsz</p>
+</blockquote>
+<ol start="3">
+<li>安装Java，最基本的服务器环境</li>
+</ol>
+<blockquote>
+<p>yum -y install java-1.8.0-openjdk*</p>
+</blockquote>
+<h2 id="开始上传">开始上传</h2>
+<ol>
+<li>创建服务器目录</li>
+</ol>
+<blockquote>
+<p>cd /usr/games<br>
+mkdir minecraft</p>
+</blockquote>
+<ol start="2">
+<li>进入/usr/games目录</li>
+</ol>
+<blockquote>
+<p>cd minecraft</p>
+</blockquote>
+<ol start="3">
+<li>上传服务端文件</li>
+</ol>
+<blockquote>
+<p>rz * 选择需要用到的服务端文件，如mingcraft_server_1.16.0.jar*<br>
+在弹出窗口中选择需要启动的服务端文件或整合包</p>
+</blockquote>
+<h2 id="开始启动服务器">开始启动服务器</h2>
+<ol>
+<li>开启视窗</li>
+</ol>
+<blockquote>
+<p>创建并进入名为&quot;minecraft&quot;的视窗<br>
+screen -S minecraft</p>
+</blockquote>
+<ol start="2">
+<li>第一次启动服务端</li>
+</ol>
+<blockquote>
+<p>java -Xmx1024M -Xms1024M -jar minecraft_1.14_server.jar nogui<br>
+** 启动文件名为minecraft_1.14_server.jar的服务端 *</p>
+</blockquote>
+<ol start="3">
+<li>编辑许可与vi编辑器的基本使用</li>
+</ol>
+<blockquote>
+<p>第一次启动需要同意说明。</p>
+</blockquote>
+<ul>
+<li>在minecraft目录下操作。</li>
+<li>vi eula.txt            (用vi编辑器修改eula.txt文件)</li>
+<li>用键盘的方向键将光标移至文本末尾，按下A键，启动编辑模式。</li>
+<li>将“eula=false”改为“eula=true”。</li>
+<li>随后按下ESC键退出编辑模式。</li>
+<li>按住SHIFT和L键旁边的冒号键，启动命令，此时左下角会出现冒号。</li>
+<li>输入wq（w表示write，q表示quit），按下ENTER键，保存退出。</li>
+</ul>
+<ol start="4">
+<li>服务器参数设置</li>
+</ol>
+<blockquote>
+<p>vi server.properties</p>
+<ul>
+<li>用vi编辑器修改服务器配置 *<br>
+关闭正版验证可以将&quot;online=true&quot;改为&quot;online=false&quot;<br>
+其他参数参考wiki</li>
+</ul>
+</blockquote>
+<ol start="5">
+<li>再次启动服务端</li>
+</ol>
+<blockquote>
+<p>java -Xmx1024M -Xms1024M -jar minecraft_1.14_server.jar nogui</p>
+<ul>
+<li>启动文件名为minecraft_1.14_server.jar的服务端*</li>
+</ul>
+</blockquote>
+<ul>
+<li>-Xmx表示服务器能用的理论最大内存量*</li>
+<li>-Xms表示服务器初始时使用的内存量*<br>
+出现Done For Help表示启动完成，在此处可输入命令</li>
+</ul>
+<ol start="6">
+<li>退出当前视窗</li>
+</ol>
+<blockquote>
+<p>按住CTRL，随后先后分别按下A和D键，及可退出screen视窗</p>
+</blockquote>
+<ol start="7">
+<li>退出xshell</li>
+</ol>
+<blockquote>
+<p>exit</p>
+</blockquote>
+<p>退出xshell<br>
+对Minecraft后台简单管理<br>
+进入minecraft视窗</p>
+<p>screen -r minecraft<br>
+进入名为&quot;minecraft&quot;的视窗<br>
+关闭服务器</p>
+<p>进入minecraft视窗，输入stop<br>
+说明<br>
+一些注意事项</p>
+<p>服务器重启后，视窗需要重建。<br>
+参考网站</p>
+<p>Minecraft官网(minecraft, 中文)<br>
+Minecraft中文论坛(mcbbs, 中文)<br>
+Minecraft Wiki(wiki, 中文)<br>
+server.properties说明(wiki, 中文)<br>
+Screen的简单使用(简书, 中文)<br>
+Minecraft服务器本体下载页面(minecraft, 英文)</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://verlif.top/post/hello-gridea/</id>
