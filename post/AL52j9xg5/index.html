@@ -1,0 +1,345 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>MockData使用简述 | Verlif的小站</title>
+
+<link rel="shortcut icon" href="https://verlif.top/favicon.ico?v=1711354992913">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://verlif.top/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages//dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=423891374"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '423891374');
+</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+    
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Verlif的小站
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tag/FEGJgnizR/" class="menu gt-a-link" target="_blank">
+                    想法
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    烧烤摊
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="https://verlif.top/post/about" class="menu gt-a-link" target="_blank">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1711354992913"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    MockData使用简述
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2023-02-12 ·
+                    </time>
+                    
+                        <a href="https://verlif.top/tag/GdqlT3qYG/" class="post-tags">
+                            # 教程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在以前我做开发的时候，经常会遇到需要向数据库中添加假数据的需求，有时又需要使用批量的随机数据来验证接口或是方法的稳定性以及容错测验。那个时候我还不知道有类似于 <strong><a href="https://gitee.com/keko-boy/jmockdata">jmockdata</a></strong> 或是 <strong><a href="https://github.com/j-easy/easy-random">easy-random</a></strong> 的数据生成工具，就只有傻傻地用姓名库和<code>for</code>循环来构造数据。</p>
+<p>后来我知道了 <strong>jmockdata</strong>，也用过 <strong>easy-random</strong>，不过使用体验并不是很好。例如 <strong>jmock</strong> 会复用对象导致循环引用时无法转<code>json</code>， <strong>easy-random</strong> 构造自定义数据有点麻烦，总的来说它们和我预想的构建模式并不是很相符。我还是期望那种更加自由的、能凭直觉就定义数据构建方法的构建工具，比如 <strong>weight</strong> 和 <strong>height</strong> 能使用不同的随机方式，而不只是简单的范围随机。</p>
+<p>而<a href="https://github.com/Verlif/mock-data">mock-data</a>就实现了我的想法。例如实现基础的数据构建，就像下面这样：</p>
+<pre><code class="language-java">MockDataCreator creator = new MockDataCreator();
+// 就像new Random.next一样，随机基础类型的数据
+int i = creator.mock(int.class);
+// 随机包装类型
+int inte = creator.mock(Integer.class);
+// 随机数组
+int[] ints = creator.mock(int[].class);
+// 指定数组大小
+int[][] intsArray = creator.mock(new int[2][3]);
+// 随机日期
+Date date = creator.mock(Date.class);
+</code></pre>
+<p>不过这也是最基本的，构建自定义对象才是重点，毕竟这是用来做自定义数据的。我个人觉得这样的方式还是比较符合直觉的：</p>
+<pre><code class="language-java">// 创建数据构造器
+MockDataCreator creator = new MockDataCreator();
+// 获取构造器的当前配置
+creator.getConfig()
+        // 自动级联构建
+        .autoCascade(true)
+        // 只替换基础类型
+        .appendFieldOption(FieldOption.IGNORED_VALUE | FieldOption.ALLOWED_PRIMITIVE)
+// 通过类来实例化对象
+Person person = creator.mock(Person.class);
+// 或是手动实例化对象，然后填充数据
+Person person = new Person();
+creator.mock(person);
+// 如果你只要其中的某个属性也可以
+Pet pet = creator.mock(Person::getPet);
+</code></pre>
+<p>其中的<code>DoubleRandomCreator</code>实际上是实现的<code>DataCreator</code>接口，开发者可以通过实现这个接口来自定义构建方式：</p>
+<pre><code class="language-java">public interface DataCreator&lt;R&gt; extends TypeGetter {
+
+    /**
+     * 生成数据
+     *
+     * @param src     构建源信息。当此构造器绑定的类是通过{@link MockDataCreator#mock(Class)}的方式传入时，field为空。&lt;br&gt;
+     *                例如此构造器绑定Person对象，而此时通过MockDataCreator.mock(Person.class)方式进入此构造器时，field对象为空。但其内部可能存在的Person则不会为空。&lt;br&gt;
+     *                也就是说，只有在{@link MockDataCreator#mock(Class)}传入的类与此构造器绑定类相同时，返回的目标对象在构造时传入的field为空。
+     * @param creator 当前所使用的数据创建器。
+     * @return 生成的数据
+     */
+    R mock(MockSrc src, MockDataCreator.Creator creator);
+
+    /**
+     * 构建器匹配的类型列表，如果有特殊需求可以自己重写方法，在列表中放入匹配的类。这样构建匹配的类时就会调用这个构建器来构建
+     */
+    @Override
+    default List&lt;Class&lt;?&gt;&gt; types() {
+        List&lt;Class&lt;?&gt;&gt; list = new ArrayList&lt;&gt;();
+        try {
+            Method method = this.getClass().getMethod(&quot;mock&quot;, MockSrc.class, MockDataCreator.Creator.class);
+            Class&lt;?&gt; type = method.getReturnType();
+            list.add(type);
+        } catch (NoSuchMethodException ignored) {
+        }
+        return list;
+    }
+}
+</code></pre>
+<p>所以实际上就只需要实现一个方法就可以了，<code>MockSrc</code>里面包括了目前的构建目标信息，便于开发者进行选择构建。<strong>mock-data</strong> 也为接口构建提供了接口构建器，让<code>MockDataCreator</code>可以自动选择合适的实现类来完成接口的构造工作，内置的<code>List</code>、<code>Set</code>和<code>Map</code>就是使用的接口构建器，这样所有实现这三个接口的类（例如<code>ArrayList</code>、<code>HashSet</code>、<code>HashMap</code>等）都可以自动构建对应的对象，而不需要对它们重新设置。</p>
+<p>当然，循环依赖生成的是独立对象，并且可以自定义每个类的循环深度。不过这些都是比较基础的功能，还不能达到我心中的便捷，毕竟如果需要构建出一个假的“真实”数据，开发者还是需要自己去设定每一个属性或是类的构建模型。虽然也可以通过结合 <strong>JavaFaker</strong> 的方式解决，但不够优雅，所以在 <strong>mock-data</strong> 在3.0版本加入了属性数据池模型，开发者只需要构建一个属性数据池，就可以让<code>MockDataCreator</code>优先使用数据池中的数据。这样做似乎与 <strong>JavaFaker</strong> 很相似？并不是，属性数据池包括了三个目标： <strong>类型（Class）</strong>、<strong>属性名（支持正则匹配）</strong>、<strong>数据池（数据对象数组）</strong>。<strong>类型</strong> 与 <strong>属性名</strong> 用来指定 <strong>数据池</strong> 的适用目标。使用方式就像下面这样：</p>
+<pre><code class="language-java">MockDataCreator creator = new MockDataCreator();
+FieldDataPool dataPool = new FieldDataPool()
+        // 自动识别同类型属性，包括int类型的所有名称中包含age的属性，忽略大小写，例如age、nominalAge
+        .like(Person::getAge, 23, 24, 25, 26, 27)
+        .next()
+        // 添加FRUIT类的数据池，则会对所有的FRUIT类进行数据池选取，忽略名称
+        .type(Person.FRUIT.class)
+        .values(Person.FRUIT.APPLE)
+        .next()
+        // 对Date类的所有名称中能匹配`.*day`和`.*time`的属性进行数据池选取
+        .type(Date.class)
+        .values(new Date[]{new Date()}, &quot;.*day&quot;, &quot;.*time&quot;).next();
+// 设置属性数据池
+creator.fieldDataPool(dataPool);
+// 开始构建
+Person person = creator.mock(Person.class);
+</code></pre>
+<p>这样似乎也不优雅？确实，所以 <strong>mock-data</strong> 实际上是提供了一个数据池框架，开发者完全可以通过继承<code>FieldDataPool</code>来构建配置文件填充的数据池。并且在 <strong>mock-data</strong> 的<em>test</em>包中其实也实现了一个<code>properties</code>的数据池，只需要把数据池信息写在<code>properties</code>中就可以控制数据池填充了，就像这样：</p>
+<pre><code class="language-properties">int#age=[22, 23, 24, 25, 25, 27]
+int#nominalAge=[23, 24, 25, 25, 27, 28]
+double#height=[120, 130, 140, 150, 160, 170, 180, 190, 200]
+double#weight=[40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160]
+String#name=[&quot;假装这个名字&quot;, &quot;这么长的姓名&quot;]
+String#nickname=[&quot;小明&quot;, &quot;小红&quot;, &quot;小张&quot;, &quot;小丽&quot;]
+java.util.Date#birthday=[&quot;1998-01-08&quot;, &quot;1998-03-08&quot;, &quot;1998-05-08&quot;, &quot;1998-07-08&quot;]
+</code></pre>
+<p>详细内容可以看 <a href="https://verlif.top/mock-data/docs/3.x/FieldDataPool.html">这里</a>。</p>
+<p>也就是说，<strong>mock-data</strong> 集成了完善的虚拟数据构建模型，并且泛型的兼容性与性能也还不错，具体可以看下下面的图片：</p>
+<figure data-type="image" tabindex="1"><img src="https://verlif.top/post-images/1705990522343.png" alt="构建测试" loading="lazy"></figure>
+<p>具体的测试内容可以把代码 <strong>clone</strong> 下来，在<em>test</em>包下查看。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://verlif.top/post/java-de-cas-jian-shu/" class="post-title gt-a-link">
+                    Java的CAS简述
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+<script>
+    // md5.min.js
+    !function(n){
+        "use strict";
+        function d(n,t){var r=(65535&n)+(65535&t);return(n>>16)+(t>>16)+(r>>16)<<16|65535&r}
+        function f(n,t,r,e,o,u){return d((c=d(d(t,n),d(e,u)))<<(f=o)|c>>>32-f,r);var c,f}
+        function l(n,t,r,e,o,u,c){return f(t&r|~t&e,n,t,o,u,c)}
+        function v(n,t,r,e,o,u,c){return f(t&e|r&~e,n,t,o,u,c)}
+        function g(n,t,r,e,o,u,c){return f(t^r^e,n,t,o,u,c)}
+        function m(n,t,r,e,o,u,c){return f(r^(t|~e),n,t,o,u,c)}
+        function i(n,t){var r,e,o,u,c;n[t>>5]|=128<<t%32,n[14+(t+64>>>9<<4)]=t;var f=1732584193,i=-271733879,a=-1732584194,h=271733878;for(r=0;r<n.length;r+=16)f=l(e=f,o=i,u=a,c=h,n[r],7,-680876936),h=l(h,f,i,a,n[r+1],12,-389564586),a=l(a,h,f,i,n[r+2],17,606105819),i=l(i,a,h,f,n[r+3],22,-1044525330),f=l(f,i,a,h,n[r+4],7,-176418897),h=l(h,f,i,a,n[r+5],12,1200080426),a=l(a,h,f,i,n[r+6],17,-1473231341),i=l(i,a,h,f,n[r+7],22,-45705983),f=l(f,i,a,h,n[r+8],7,1770035416),h=l(h,f,i,a,n[r+9],12,-1958414417),a=l(a,h,f,i,n[r+10],17,-42063),i=l(i,a,h,f,n[r+11],22,-1990404162),f=l(f,i,a,h,n[r+12],7,1804603682),h=l(h,f,i,a,n[r+13],12,-40341101),a=l(a,h,f,i,n[r+14],17,-1502002290),f=v(f,i=l(i,a,h,f,n[r+15],22,1236535329),a,h,n[r+1],5,-165796510),h=v(h,f,i,a,n[r+6],9,-1069501632),a=v(a,h,f,i,n[r+11],14,643717713),i=v(i,a,h,f,n[r],20,-373897302),f=v(f,i,a,h,n[r+5],5,-701558691),h=v(h,f,i,a,n[r+10],9,38016083),a=v(a,h,f,i,n[r+15],14,-660478335),i=v(i,a,h,f,n[r+4],20,-405537848),f=v(f,i,a,h,n[r+9],5,568446438),h=v(h,f,i,a,n[r+14],9,-1019803690),a=v(a,h,f,i,n[r+3],14,-187363961),i=v(i,a,h,f,n[r+8],20,1163531501),f=v(f,i,a,h,n[r+13],5,-1444681467),h=v(h,f,i,a,n[r+2],9,-51403784),a=v(a,h,f,i,n[r+7],14,1735328473),f=g(f,i=v(i,a,h,f,n[r+12],20,-1926607734),a,h,n[r+5],4,-378558),h=g(h,f,i,a,n[r+8],11,-2022574463),a=g(a,h,f,i,n[r+11],16,1839030562),i=g(i,a,h,f,n[r+14],23,-35309556),f=g(f,i,a,h,n[r+1],4,-1530992060),h=g(h,f,i,a,n[r+4],11,1272893353),a=g(a,h,f,i,n[r+7],16,-155497632),i=g(i,a,h,f,n[r+10],23,-1094730640),f=g(f,i,a,h,n[r+13],4,681279174),h=g(h,f,i,a,n[r],11,-358537222),a=g(a,h,f,i,n[r+3],16,-722521979),i=g(i,a,h,f,n[r+6],23,76029189),f=g(f,i,a,h,n[r+9],4,-640364487),h=g(h,f,i,a,n[r+12],11,-421815835),a=g(a,h,f,i,n[r+15],16,530742520),f=m(f,i=g(i,a,h,f,n[r+2],23,-995338651),a,h,n[r],6,-198630844),h=m(h,f,i,a,n[r+7],10,1126891415),a=m(a,h,f,i,n[r+14],15,-1416354905),i=m(i,a,h,f,n[r+5],21,-57434055),f=m(f,i,a,h,n[r+12],6,1700485571),h=m(h,f,i,a,n[r+3],10,-1894986606),a=m(a,h,f,i,n[r+10],15,-1051523),i=m(i,a,h,f,n[r+1],21,-2054922799),f=m(f,i,a,h,n[r+8],6,1873313359),h=m(h,f,i,a,n[r+15],10,-30611744),a=m(a,h,f,i,n[r+6],15,-1560198380),i=m(i,a,h,f,n[r+13],21,1309151649),f=m(f,i,a,h,n[r+4],6,-145523070),h=m(h,f,i,a,n[r+11],10,-1120210379),a=m(a,h,f,i,n[r+2],15,718787259),i=m(i,a,h,f,n[r+9],21,-343485551),f=d(f,e),i=d(i,o),a=d(a,u),h=d(h,c);return[f,i,a,h]}
+        function a(n){var t,r="",e=32*n.length;for(t=0;t<e;t+=8)r+=String.fromCharCode(n[t>>5]>>>t%32&255);return r}
+        function h(n){var t,r=[];for(r[(n.length>>2)-1]=void 0,t=0;t<r.length;t+=1)r[t]=0;var e=8*n.length;for(t=0;t<e;t+=8)r[t>>5]|=(255&n.charCodeAt(t/8))<<t%32;return r}
+        function e(n){var t,r,e="0123456789abcdef",o="";for(r=0;r<n.length;r+=1)t=n.charCodeAt(r),o+=e.charAt(t>>>4&15)+e.charAt(15&t);return o}
+        function r(n){return unescape(encodeURIComponent(n))}
+        function o(n){return a(i(h(t=r(n)),8*t.length));var t}
+        function u(n,t){return function(n,t){var r,e,o=h(n),u=[],c=[];for(u[15]=c[15]=void 0,16<o.length&&(o=i(o,8*n.length)),r=0;r<16;r+=1)u[r]=909522486^o[r],c[r]=1549556828^o[r];return e=i(u.concat(h(t)),512+8*t.length),a(i(c.concat(e),640))}(r(n),r(t))}
+        function t(n,t,r){return t?r?u(t,n):e(u(t,n)):r?o(n):e(o(n))}
+        "function"==typeof define&&define.amd?define(function(){return t}):"object"==typeof module&&module.exports?module.exports=t:n.md5=t;
+    }(this);
+</script>
+
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'f548616746dc43132a69',
+    clientSecret: '9866c5c8872356841b3f96443365b9c334494c6c',
+    repo: 'verlif.github.io',
+    owner: 'verlif',
+    admin: ['verlif'],
+    id: md5(location.pathname),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false       // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">就像这样</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/Verlif" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme <a href="https://github.com/imhanjie/gridea-theme-pure" target="_blank">Pure</a>, Powered by <a
+                href="https://gridea.dev" target="_blank">Gridea</a> | <a href="https://verlif.top/atom.xml" target="_blank">RSS</a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
