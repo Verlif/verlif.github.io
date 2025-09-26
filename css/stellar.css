@@ -1,0 +1,167 @@
+/* 文字黑幕 */
+.mask {
+  background-color: #252525;
+  color: #252525;
+  transition: color 0.5s;
+  padding: 0 2px
+}
+
+.mask:hover {
+  color: #ffffff;
+}
+
+.article.banner {
+  background: hsl(0deg 0% 0%);
+}
+
+/* 背景 */
+body>.sitebg .siteblur {
+  backdrop-filter: blur(var(--blur-px)) brightness(0.6);
+}
+
+/* 鼠标悬浮文字上移 */
+.spring {
+  position: relative;
+  top: 0px;
+  transition-duration: 200ms;
+}
+
+.spring:hover {
+  top: -4px;
+}
+
+/* 背景 */
+html body {
+  background: unset;
+}
+
+/* 中间内容的高度修复 */
+#main {
+  background: #141414e6;
+  border-radius: 4px;
+  margin: 8px;
+  padding: 0;
+  height: fit-content;
+  backdrop-filter: blur(4px) brightness(0.8);
+}
+
+/* 代码框 */
+.code, .gutter {
+  .line {
+    font-size: 18px;
+  }
+}
+
+.md-text .highlight >table {
+  background: #ffffff1a;
+}
+
+/* 文章列表卡片鼠标悬浮样式 */
+:root:not([data-theme]) .post-list .post-card {
+  transition-duration: 200ms;
+  background: #ffffff24
+}
+
+:root:not([data-theme]) .post-list .post-card:hover {
+  box-shadow: 0 0 4px -2px #ffffff, 0 0 24px -8px #ffffff;
+  background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0) 10%, rgb(0 0 0 / 60%) 60%);
+}
+
+.l_main {
+  top: calc(var(--gap-margin)) / 2;
+
+  .page-footer {
+    margin: 4rem 1rem 1rem;
+  }
+}
+
+/* 文章列表卡片字体 */
+.l_main .post-list {
+  margin-top: 36px;
+
+  .post-title {
+    border-bottom-style: dotted;
+    border-color: #5d5a5b;
+    font-weight: bold;
+    padding-bottom: 10px;
+  }
+}
+
+/* 导航栏未被选中的文字 */
+.navbar nav a {
+  color: rgb(221, 221, 221);
+}
+
+/* 左右侧栏 */
+.widget-wrapper.toc, .widget-wrapper.user-card .widget-body, .widget-wrapper.post-list .widget-body {
+  background: #0000007c;
+  border-radius: 16px;
+}
+
+.l_body {
+  grid-gap: unset;
+  grid-template-columns: 1fr minmax(200px, 50%) 1fr;
+
+  .l_left, .l_right {
+    margin-top: 8px;
+    top: calc(var(--gap-margin) * 2);
+  }
+}
+
+.l_left {
+  background-image: unset;
+
+  .leftbar-container {
+    backdrop-filter: unset;
+    --blur-bg: unset;
+    --blur-px: 10px;
+    background-color: #000000c2;
+    border-radius: 16px;
+
+    &:before {
+      border-radius: 16px;
+    }
+  }
+}
+
+.l_right {
+  --blur-bg: unset;
+  --blur-px: 10px;
+
+  .widget-wrapper.toc {
+    border-radius: 16px;
+  }
+}
+
+/* ghuser下的follow按钮 */
+.widgets .widget-wrapper.user-card .follow {
+  background: white;
+  color: black;
+
+  &:hover {
+    background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 1) 60%);
+    color: white;
+  }
+}
+
+/* 文章目录字体 */
+.toc .toc-text {
+  color: #c5c5c5;
+}
+
+.widget-wrapper.toc .widget-footer a {
+  color: white;
+}
+
+.article.banner.top {
+  height: 280px;
+  mask-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 1) 60%);
+}
+
+.l_main .mobile-only {
+  padding-top: 20px;
+}
+
+.related-wrap {
+  margin: 1rem 0;
+}
