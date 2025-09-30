@@ -1,50 +1,33 @@
-name: Pages
+name: GithubPageDeploy
 
 on:
   push:
     branches:
-      - main # default branch
+      - master  # 触发分支
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          # If your repository depends on submodule, please see: https://github.com/actions/checkout
-          submodules: recursive
-      - name: Use Node.js 20
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
-          # Ref: https://github.com/actions/setup-node#supported-version-syntax
-          node-version: "20"
-      - name: Cache NPM dependencies
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-npm-cache
-          restore-keys: |
-            ${{ runner.OS }}-npm-cache
-      - name: Install Dependencies
+          node-version: '22'
+
+      - name: Install dependencies
         run: npm install
-      - name: Build
+
+      - name: Build Vue project
         run: npm run build
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+
+      - name: Deploy to Another Repository
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: ./public
-  deploy:
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          token: ${{ secrets.DEPLOY_TOKEN }}  # 使用 PAT
+          repository-name: OnePageWeb/one  # 目标仓库
+          branch: gh-pages  # 目标分支（可自定义）
+          folder: public  # Vue 打包后的目录
+          clean: true  # 清理旧文件
