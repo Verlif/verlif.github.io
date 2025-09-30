@@ -1,12 +1,13 @@
 {
-  "name": "hexo-site",
-  "version": "0.0.0",
+  "name": "blog-verlif",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server"
+    "server": "hexo server",
+    "dev": "hexo clean & hexo s"
   },
   "hexo": {
     "version": "7.3.0"

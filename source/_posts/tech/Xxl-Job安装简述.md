@@ -1,5 +1,6 @@
 ---
 title: Xxl-job安装简述
+date: 2025-07-30 08:00:00
 tags:
   - 教程
 published: true
