@@ -1,4 +1,6 @@
 name: GithubPageDeploy
+permissions:
+  contents: write
 
 on:
   push:
