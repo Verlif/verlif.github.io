@@ -1,0 +1,4 @@
+name: traveller
+title: 旅行者
+description: 欢迎光临，旅行者
+order_by: -date # 默认是按发布日期倒序排序

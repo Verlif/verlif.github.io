@@ -1,0 +1,79 @@
+comments:
+  service: beaudar
+  beaudar:
+    repo: verlif/blog-commit
+logo:
+  subtitle: '{config.subtitle} | 我在这里哟~' # '文字1 | 文字2' (鼠标放上去会切换到文字2)
+footer:
+  content: |
+    <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+site_tree:
+  # -- 列表类页面 -- #
+  # 主页配置
+  home:
+    leftbar: welcome, recent, tagcloud
+    rightbar: ghuser
+  post:
+    leftbar: related, tagcloud
+  topic:
+    menu_id: notes
+    base_dir: topic
+    leftbar: ghuser
+    rightbar: toc
+  page:
+    menu_id: toys
+    leftbar: ghuser, toyslist
+    rightbar: toc
+menubar:
+  columns: 3 # 一行多少个
+  items: # 可按照自己需求增加，符合以下格式即可
+    - id: post
+      theme: '#1BCDFC'
+      icon: solar:documents-bold-duotone
+      title: 博客
+      url: /
+    - id: toys
+      theme: '#FA6400'
+      icon: solar:planet-bold-duotone
+      title: 玩意儿 
+      url: /toys/
+    - id: notes
+      theme: '#3DC550'
+      icon: solar:notebook-bookmark-bold-duotone
+      title: 这些那些
+      url: /topic/
+style:
+  site:
+    background-image: 'url(/assets/background.png)'
+    blur-px: 5px # 模糊半径
+    blur-bg: var(--alpha40)
+  border-radius:
+    block: 4px # 块圆角
+    image: 4px # 图片圆角
+    card-l: 4px # 侧边栏、文章横幅位置的圆角
+    card: 4px # 文章内大部分卡片的圆角
+    bar: 4px # 横条类元素的圆角
+  color:
+    # 动态颜色（会根据明暗主题重设明度值，只用关心色相和饱和度即可）
+    background: 'hsl(212 16% 98%)' # 浅色背景颜色
+    block: 'hsl(212 8% 95%)' # 块背景颜色
+    code: 'hsl(220 20% 10%)' # 'hsl(14 100% 48%)' # 行内代码颜色
+    text: 'hsl(0 0% 10%)' # 文本颜色
+    # 主题色配置（不会根据明暗动态调整，请设置为通用的颜色）
+    theme: 'hsl(192 98% 55%)' # 主题色
+    accent: 'hsl(14 100% 57%)' # 强调色
+    link: 'hsl(207 90% 54%)' # 超链接颜色
+    hover: 'hsl(14 100% 57%)' # 按钮高亮颜色
+# 默认关闭
+scrollreveal:
+  enable: true
+  js: https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js
+  distance: 4px # 执行距离
+  duration: 400 # ms # 执行时长
+  interval: 100 # ms # 执行间隔（时间）
+  scale: 0.1 # 0.1~1 # 执行方式（缩放）
+inject:
+  head:
+    # 自定义css
+    - <link rel="stylesheet" href="/css/stellar.css?1">
