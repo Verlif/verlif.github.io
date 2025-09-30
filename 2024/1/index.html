@@ -1,0 +1,1086 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1" theme-name="Stellar" theme-version="1.33.1">
+  
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  <title>Hexo的简单部署与Obsidian的配合使用 - Verlif的小站</title>
+
+  
+    <meta name="description" content="从安装Hexo到与Obsidian配合完成一整套的个人博客编写，以及GithubPages的发布。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo的简单部署与Obsidian的配合使用">
+<meta property="og:url" content="https://blog.verlif.top/2024/1/">
+<meta property="og:site_name" content="Verlif的小站">
+<meta property="og:description" content="从安装Hexo到与Obsidian配合完成一整套的个人博客编写，以及GithubPages的发布。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/39126497?v=4">
+<meta property="article:published_time" content="2024-04-26T13:07:48.000Z">
+<meta property="article:modified_time" content="2025-09-30T02:27:34.648Z">
+<meta property="article:author" content="Verlif">
+<meta property="article:tag" content="教程">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Obsidian">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/39126497?v=4">
+  
+  
+  
+  <meta name="keywords" content="教程,Hexo,Obsidian">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.33.1">
+
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Verlif","sameAs":[],"image":"https://avatars.githubusercontent.com/u/39126497?v=4"},"dateCreated":"2024-04-26T21:07:48+08:00","dateModified":"2025-09-30T10:27:34+08:00","datePublished":"2024-04-26T21:07:48+08:00","description":"从安装Hexo到与Obsidian配合完成一整套的个人博客编写，以及GithubPages的发布。","headline":"Hexo的简单部署与Obsidian的配合使用","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.verlif.top/2024/1/"},"publisher":{"@type":"Organization","name":"Verlif","sameAs":[],"image":"https://avatars.githubusercontent.com/u/39126497?v=4","logo":{"@type":"ImageObject","url":"https://avatars.githubusercontent.com/u/39126497?v=4"}},"url":"https://blog.verlif.top/2024/1/","keywords":"教程, Hexo, Obsidian","thumbnailUrl":"/images/hexo_obsidian_githubpages/hexo.png","image":1}</script>
+  <link rel="stylesheet" href="/css/stellar.css?1">
+</head>
+<body><div class="sitebg"><div class="siteblur"></div></div>
+
+<div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://avatars.githubusercontent.com/u/39126497?v=4" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">Verlif的小站</div><div class="sub normal cap">欢迎光临</div><div class="sub hover cap" style="opacity:0"> 我在这里哟~</div></a></div></header>
+
+<div class="nav-area">
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="玩意儿" href="/toys/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a><a class="nav-item" title="这些那些" href="/topic/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a></nav>
+</div>
+<div class="widgets">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+
+<widget class="widget-wrapper tagcloud"><div class="widget-header dis-select"><span class="name">标签云</span></div><div class="widget-body fs14"><a href="/tags/Android/" style="font-size: 16px;" class="tag -3">Android<span class="count">2</span></a> <a href="/tags/Git/" style="font-size: 12px;" class="tag -0">Git<span class="count">1</span></a> <a href="/tags/GitLab/" style="font-size: 12px;" class="tag -0">GitLab<span class="count">1</span></a> <a href="/tags/Github/" style="font-size: 16px;" class="tag -3">Github<span class="count">2</span></a> <a href="/tags/Gridea/" style="font-size: 16px;" class="tag -3">Gridea<span class="count">2</span></a> <a href="/tags/Hexo/" style="font-size: 16px;" class="tag -3">Hexo<span class="count">2</span></a> <a href="/tags/Idea/" style="font-size: 16px;" class="tag -3">Idea<span class="count">2</span></a> <a href="/tags/Java/" style="font-size: 24px;" class="tag -10">Java<span class="count">24</span></a> <a href="/tags/JavaDoc/" style="font-size: 20px;" class="tag -7">JavaDoc<span class="count">3</span></a> <a href="/tags/Jenkins/" style="font-size: 12px;" class="tag -0">Jenkins<span class="count">1</span></a> <a href="/tags/JitPack/" style="font-size: 12px;" class="tag -0">JitPack<span class="count">1</span></a> <a href="/tags/Markdown/" style="font-size: 12px;" class="tag -0">Markdown<span class="count">1</span></a> <a href="/tags/Maven/" style="font-size: 12px;" class="tag -0">Maven<span class="count">1</span></a> <a href="/tags/Minecraft/" style="font-size: 16px;" class="tag -3">Minecraft<span class="count">2</span></a> <a href="/tags/MySQL/" style="font-size: 12px;" class="tag -0">MySQL<span class="count">1</span></a> <a href="/tags/Nacos/" style="font-size: 12px;" class="tag -0">Nacos<span class="count">1</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top"><img class="lazy bg" data-src="/images/hexo_obsidian_githubpages/hexo.png">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2024-04-26T13:07:48.000Z">2024-04-26</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-09-30T02:27:34.648Z">2025-09-30</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Hexo的简单部署与Obsidian的配合使用</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><p>从安装Hexo到与Obsidian配合完成一整套的个人博客编写，以及GithubPages的发布。</p>
+<span id="more"></span>
+
+<h2 id="简要说明"><a href="#简要说明" class="headerlink" title="简要说明"></a>简要说明</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo</a>是一个命令行式的静态博客生成工具。选择<strong>Hexo</strong>的原因就是主题多，拓展性高。</p>
+<blockquote>
+<p>快速、简洁且高效的博客框架<br><em>来自Hexo官网的Slogen</em></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/">Obsidian</a>是一个轻量级写作软件。选择<strong>Obsidian</strong>的原因是项目式管理，对<strong>markdown</strong>文件书写方便且配置同步方便。</p>
+<blockquote>
+<p>Sharpen your thinking.<br><em>来自Obsidian官网的Slogen</em></p>
+</blockquote>
+<p>本文的目的是帮助作者从零开始搭建自己的个人博客系统，目标方式是由<strong>Obsidian</strong>编写内容，通过<strong>Hexo</strong>生成静态网页，发布到<strong>GithubPages</strong>托管站点完成全网访问。</p>
+<p><em>本文不会详细介绍软件安装过程和部分软件的使用方法，需要作者有一定的软件基础。</em></p>
+<h2 id="Hexo安装与使用"><a href="#Hexo安装与使用" class="headerlink" title="Hexo安装与使用"></a>Hexo安装与使用</h2><h3 id="Hexo的安装"><a href="#Hexo的安装" class="headerlink" title="Hexo的安装"></a>Hexo的安装</h3><ol>
+<li><p>Node.js环境</p>
+<p> 首先，<strong>Hexo</strong>是基于<strong>Node.js</strong>编写的，所以需要电脑中有<strong>Node</strong>环境。作者可以通过指令<code>npm version</code>检查是否已安装<strong>Node</strong>以及<strong>Node.js</strong>的版本。</p>
+<p> 如果没有可以从 <a target="_blank" rel="noopener" href="https://nodejs.org/en">Node官网</a> 点击<strong>Download</strong>下载并安装。</p>
+</li>
+<li><p>Hexo安装</p>
+<p> 一般可以直接通过以下命令进行全局安装：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
+<p> 当然，官方也提供了简单的说明：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/setup">建站 | Hexo</a>。</p>
+</li>
+</ol>
+<h3 id="Hexo的使用"><a href="#Hexo的使用" class="headerlink" title="Hexo的使用"></a>Hexo的使用</h3><h4 id="初始化项目目录"><a href="#初始化项目目录" class="headerlink" title="初始化项目目录"></a>初始化项目目录</h4><p>通过以下命令来新建<code>blog</code>目录，并将此目录进行<strong>Hexo</strong>结构初始化。当前，这里的<code>blog</code>也可以使用绝对路径进行替换（下文中将以<code>blog</code>目录举例）:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，在<code>init</code>的过程中，<strong>Hexo</strong>会从<strong>GitHub</strong>的仓库中下载初始化文件，所以<strong>GitHub</strong>的连接状态会影响<code>init</code>的速度甚至是成功结果。</p>
+<p><img src="/images/hexo_obsidian_githubpages/hexo_init.png" alt="hexo初始化"></p>
+<p><em>（后续的<strong>根目录</strong>就是指的这里的<code>blog</code>目录）</em></p>
+<h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><p>进入第一步初始化好的目录，在此打开命令行，并输入以下命令（这里的<code>s</code>表示<strong>server</strong>，使用了指令缩写，后续的指令同样都使用了缩写。全称指令请参考 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/commands">官方文档</a>）。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/hexo_obsidian_githubpages/hexo_s.png" alt="hexo启动服务"></p>
+<p>当出现<code>Hexo is running</code>时表示服务已开启，此时通过浏览器访问<a target="_blank" rel="noopener" href="http://127.0.0.1:4000/">http://127.0.0.1:4000</a>即可访问此时构建的站点。可以看到此时的站点只有一个初始化的文章。</p>
+<p><img src="/images/hexo_obsidian_githubpages/hexo_default_page.png" alt="hexo的默认页面"></p>
+<p>如需要停止服务，在控制台<strong>按住Ctrl</strong>，随后<strong>按下C键</strong>即可停止服务。此时可以进行构建或重新启动服务。</p>
+<h4 id="编写第一篇文章"><a href="#编写第一篇文章" class="headerlink" title="编写第一篇文章"></a>编写第一篇文章</h4><p>通常我们可以通过<strong>Hexo</strong>的指令来进行新增文章的操作，比如以下指令。当然，除非你开了第二个控制台，否则你需要先停止之前启动的服务才能进行这些指令操作。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n &quot;我的第一篇文章&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/hexo_obsidian_githubpages/hexo_new_post.png" alt="通过Hexo命令新建文章"></p>
+<p>此时在项目根目录下的<code>\source\_posts</code>中就可以找到我们新建的<code>我的第一篇文章.md</code>文件，我们就可以通过自己喜欢的编辑器来编辑这篇文章了（<strong>Hexo</strong>当然不提供编辑器的功能了）。</p>
+<p><img src="/images/hexo_obsidian_githubpages/edit_first_post.png" alt="编辑文章"></p>
+<p>编辑完成后，我们需要通过以下命令来清除之前的构建并重新编译文件。之所以需要<code>hexo clean</code>来清除构建是避免残留无用的文件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp; hexo g</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/hexo_obsidian_githubpages/hexo_clean_gen.png" alt="重新构建目录"></p>
+<p>构建完毕后，再次通过以下指令来启动服务：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>此时我们再打开网页或是刷新网页就会是这样的：</p>
+<p><img src="/images/hexo_obsidian_githubpages/hexo_first_page.png" alt="更新后的网页"></p>
+<p>为了后续更方便得进行文章编写与本地预览，我们一般可以这样使用指令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp; hexo g &amp; hexo s</span><br></pre></td></tr></table></figure>
+
+<h4 id="管理文章"><a href="#管理文章" class="headerlink" title="管理文章"></a>管理文章</h4><p>从<a href="#%E7%BC%96%E5%86%99%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0">前面的操作</a>中我们可以看出，<code>\source\_posts</code>就是我们的文章目录，我们就可以在这里对文章进行新增和删除。</p>
+<p>这里，我推荐大家使用<strong>Obsidian</strong>来进行写作，不仅是编写方便，并且在适配度和管理上面很切合博客编写。下面开始介绍<strong>Obsidian</strong>。</p>
+<h2 id="Obsidian的安装与使用"><a href="#Obsidian的安装与使用" class="headerlink" title="Obsidian的安装与使用"></a>Obsidian的安装与使用</h2><h3 id="Obsidian的使用"><a href="#Obsidian的使用" class="headerlink" title="Obsidian的使用"></a>Obsidian的使用</h3><p><em>本文主要介绍文章的书写，所以<strong>Obsidian</strong>不作特别细致的讲解，想要深入了解的作者可以自行在搜索引擎中搜索。</em></p>
+<h4 id="安装Obsidian"><a href="#安装Obsidian" class="headerlink" title="安装Obsidian"></a>安装Obsidian</h4><p>从官方<a target="_blank" rel="noopener" href="https://obsidian.md/download">下载地址</a>中下载并安装<strong>Obsidian</strong>。</p>
+<h4 id="打开项目目录"><a href="#打开项目目录" class="headerlink" title="打开项目目录"></a>打开项目目录</h4><p>打开<strong>Obsidian</strong>，并选择 <strong>【打开本地仓库】</strong> ，并选择项目目录下的<code>source</code>目录打开。</p>
+<p><img src="/images/hexo_obsidian_githubpages/obsidian_open.png" alt="打开项目目录"></p>
+<p>如果选错了也可以从左下角的 <strong>【打开其他仓库】</strong> 图标重新打开项目。打开目录后，页面应该是这样的：</p>
+<p><img src="/images/hexo_obsidian_githubpages/obsidian_first_page.png" alt="初次打开文章目录"></p>
+<h4 id="设置（可选）"><a href="#设置（可选）" class="headerlink" title="设置（可选）"></a>设置（可选）</h4><p><strong>Obsidian</strong>由于便利性的缘故，并不是严格按照<strong>markdown</strong>格式进行编写或显示的，所以对于常用<strong>markdown</strong>文档的作者来说可以进行编辑设置避免编写混乱。</p>
+<ol>
+<li>设置 - 编辑器 - 默认编辑模式 <strong>源码模式</strong></li>
+<li>设置 - 编辑器 - 显示 - 缩减栏宽 <strong>关闭</strong></li>
+<li>设置 - 编辑器 - 显示 - 严格换行 <strong>开启</strong></li>
+<li>设置 - 文件与链接 - 使用Wiki链接 <strong>关闭</strong></li>
+<li>设置 - 文件与链接 - 检测所有类型文件 <strong>关闭</strong></li>
+</ol>
+<h4 id="编辑文章"><a href="#编辑文章" class="headerlink" title="编辑文章"></a>编辑文章</h4><p><strong>Obsidian</strong>左侧是目录，右侧是内容。在左侧选择了文章后，在右侧可以进行编辑。</p>
+<p><img src="/images/hexo_obsidian_githubpages/obsidian_edit.png" alt="Obsidian编辑文章"></p>
+<p><em>眼尖的小朋友已经看到了文章顶部的配置区域了，具体的配置可以看这里 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/front-matter">Front-matter | Hexo</a></em></p>
+<h4 id="使用模板"><a href="#使用模板" class="headerlink" title="使用模板"></a>使用模板</h4><p>在使用<strong>Obsidian</strong>时，非常便携性的一点就是可以通过模板的方式创建文章。</p>
+<h5 id="新建模板"><a href="#新建模板" class="headerlink" title="新建模板"></a>新建模板</h5><ol>
+<li>在左侧目录中增加<code>templates</code>目录。</li>
+<li>在<code>templates</code>目录下新增文件<code>post</code>。</li>
+<li>编辑<code>post</code>模板文件。</li>
+<li>在<code>设置 - 模板 - 模板文件夹位置</code>中设置目录为<code>templates</code>。</li>
+</ol>
+<p>这里推荐一个简单的模板：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123;title&#125;&#125;</span><br><span class="line">date: &#x27;&#123;&#123;date&#125;&#125; &#123;&#123;time&#125;&#125;&#x27;</span><br><span class="line"><span class="section">tags: []</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line">&lt;!-- more --&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="使用模板-1"><a href="#使用模板-1" class="headerlink" title="使用模板"></a>使用模板</h5><p>模板只能在已有的文章中使用，也就是，要先新建一个文章文件，然后点击左侧的【插入模板】图标并选择<code>post</code>模板，随后就可以看到模板的效果了。</p>
+<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>有必要说明一下，<strong>obsidian</strong>在进行换行时使用的是<strong>LF</strong>规范，而<strong>Windows</strong>下默认的是<strong>CRLF</strong>规范，这就导致了在一些文章在被<strong>obsidian</strong>打开后会被Git标记为已修改，即使你什么都没有编辑过。</p>
+<p>所以是将所有文章重新用<strong>LF</strong>规范格式化一次，或是谨慎使用<strong>obsidian</strong>打开<strong>CRLF</strong>换行的文章，抑或是推送时手动检查并回退格式，就看作者怎么考虑了。</p>
+<p>具体可以看这篇文章<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/380574688">CRLF和LF的差异 - 知乎 (zhihu.com)</a></p>
+<h2 id="网站配置"><a href="#网站配置" class="headerlink" title="网站配置"></a>网站配置</h2><p>文章当然很重要，但是网站也是门面，我们肯定要对它装饰装饰。</p>
+<h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><p>第一步自然是先选一个顺眼的主题装上。从<a target="_blank" rel="noopener" href="https://hexo.io/themes/">这里</a>进入官方列出的主题列表。找到喜欢的主题，里面都有详细的安装介绍。</p>
+<p>一般都是两个步骤：</p>
+<ol>
+<li>安装，包括但不限于通过<code>npm</code>安装或是从<strong>GitHub</strong>中下载主题文件到项目目录下的<code>themes</code>中。</li>
+<li>修改<code>_config.yaml</code>文件中的<code>theme</code>值，这个值对应的就是<code>theme</code>下主题的<strong>文件夹名称</strong>。</li>
+</ol>
+<h3 id="网站信息"><a href="#网站信息" class="headerlink" title="网站信息"></a>网站信息</h3><p>网站信息大部分都在<code>_config.yaml</code>中，可以从<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration">这里</a>查看所有的配置参数。</p>
+<p>常用的就是这些：</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>参数说明</th>
+<th>参数举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>title</td>
+<td>网站标题</td>
+<td>Verlif的小站</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>网站关键词</td>
+<td>[博客, 文章]</td>
+</tr>
+<tr>
+<td>author</td>
+<td>网站作者名称</td>
+<td>Verlif</td>
+</tr>
+<tr>
+<td>url</td>
+<td>个人站点地址</td>
+<td><a target="_blank" rel="noopener" href="https://verlif.top/">https://verlif.top</a></td>
+</tr>
+</tbody></table>
+<h3 id="网站图标"><a href="#网站图标" class="headerlink" title="网站图标"></a>网站图标</h3><p>网站的图标需要一个名为<code>favicon.ico</code>的图标文件，图标文件可以从很多的图标网站下载（例如<a target="_blank" rel="noopener" href="https://www.iconfont.cn/">阿里矢量图标库</a>）或是自己画一个图片文件转成<code>ico</code>文件。</p>
+<p>然后将这个文件放在项目根目录下的<code>source</code>目录下，也就是和<code>_post</code>目录同级。</p>
+<h2 id="网站部署"><a href="#网站部署" class="headerlink" title="网站部署"></a>网站部署</h2><p>网站的部署其实有很多的方式，比如通过<strong>Nginx</strong>映射编译目录，或是通过<strong>GithubPage</strong>进行部署。</p>
+<p>这两个方式都是将<code>hexo g</code>生成的<code>public</code>目录进行部署访问。这里只介绍<strong>GithubPage</strong>的部署方式。</p>
+<h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><p>要部署到<strong>GithubPage</strong>就需要使用<strong>Git</strong>来提交文件到<strong>Github</strong>的仓库。</p>
+<p><strong>Git</strong>的下载地址在<a target="_blank" rel="noopener" href="https://git-scm.com/download">这里</a>。</p>
+<h3 id="注册Github账号"><a href="#注册Github账号" class="headerlink" title="注册Github账号"></a>注册Github账号</h3><p>在<a target="_blank" rel="noopener" href="https://github.com/">Github</a>网站中点击右上角的 <strong>【Sign up】</strong> 按钮，随后按照网站指示进行注册。其中会用到个人邮箱，这里用国内邮箱也是可以的。</p>
+<h3 id="开启GithubPage"><a href="#开启GithubPage" class="headerlink" title="开启GithubPage"></a>开启GithubPage</h3><p>看这篇<a href="GithubPages%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8.md">文章</a>。</p>
+<h3 id="本地密钥添加"><a href="#本地密钥添加" class="headerlink" title="本地密钥添加"></a>本地密钥添加</h3><p>添加密钥的目的是为了能有权限将文件提交到自己的Github仓库中。</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://docs.github.com/zh/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">生成密钥</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.github.com/zh/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">添加密钥</a></li>
+</ol>
+<h3 id="本地deploy测试"><a href="#本地deploy测试" class="headerlink" title="本地deploy测试"></a>本地deploy测试</h3><p>Github环境准备好后，我们就可以开始部署网站了。</p>
+<p>首先，我们需要现在本地进行deploy测试。这里我们就要继续修改<code>_config.yaml</code>文件，直接划到最后的找到<code>deploy</code>参数，就像这样配置：</p>
+<p><img src="/images/hexo_obsidian_githubpages/config_deploy.png" alt="修改deploy参数"></p>
+<p>这里的<code>&#123;&#123;TOKEN&#125;&#125;</code>需要替换成自己的Github账号生成的<strong>TOKEN</strong>值。</p>
+<p>后面的地址填写自己的<strong>GithubPage</strong>地址（地址结构就是<code>github.com/&#123;&#123;账户名&#125;&#125;/&#123;&#123;账户名&#125;&#125;.github.io.git</code>）。</p>
+<p>那么如何能生成<strong>TOKEN</strong>呢？其实也非常简单，按照下图的方式就可以生成。</p>
+<p><img src="/images/hexo_obsidian_githubpages/github_token.png" alt="生成TOKEN"></p>
+<p>这里是步骤解析：</p>
+<ol>
+<li>点击右上角的【头像】展开选项，选中【SETTINGS】。</li>
+<li>划至下侧的【Developer settings】。</li>
+<li>选择左侧的【Personal access tokens】分类，点击【Tokens (classic)】。</li>
+<li>点击右侧的【Generate new token】。</li>
+<li>选择【Generate new token (classic)】。</li>
+<li>填写【Note】，并将【Expiration】设置为【No expiration】。</li>
+<li>在【Select scopes】中勾选【repo】。</li>
+<li>最后划到最后点击【Generate token】生成<strong>token</strong>，此时会跳转页面并在页面中显示出<strong>token</strong>，注意，此<strong>token</strong>只会显示这一次，请将其复制下来，并替换之前地址参数中的<code>&#123;&#123;TOKEN&#125;&#125;</code>。</li>
+</ol>
+<p>在地址参数修改好之后，通过以下指令进行部署，也就是将<code>public</code>目录提交到仓库中。提交成功后，就可以访问<code>https://&#123;&#123;账户名&#125;&#125;.github.io</code>来查看自己的网站了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<h2 id="自动化部署（可选）"><a href="#自动化部署（可选）" class="headerlink" title="自动化部署（可选）"></a>自动化部署（可选）</h2><p>本来通过<code>hexo d</code>就可以事项部署了，但是这个只能将编译好的网站部署，源数据（项目文件）只会保留在本地。想要数据迁移或备份时只能通过文件夹复制或是打包传递，有些许麻烦。所以我们需要将项目文件也通过<strong>Github</strong>保存管理。</p>
+<p>此时我们就会管理两个仓库，一个是部署仓库（<code>&#123;&#123;账户名&#125;&#125;.github.io</code>），一个是项目仓库，这样当我们每次更新完文章后，既需要<code>hexo d</code>部署网站，有需要<code>git push</code>项目仓库，也有些麻烦，所以我们就用到了<strong>GithubAction</strong>来帮助我们部署，我们就只需要管理项目仓库即可。</p>
+<h3 id="新建项目仓库"><a href="#新建项目仓库" class="headerlink" title="新建项目仓库"></a>新建项目仓库</h3><p>我们这里在<strong>Github</strong>中再新建一个用来存放项目源文件（也就是根目录）的仓库，假设这个仓库名为<strong>hexo-blog</strong>，以下称为<strong>项目仓库</strong>。</p>
+<p>新建的仓库用<strong>private</strong>（私有）仓库即可，<strong>不推荐</strong>初始化<code>readme</code>文件，这样方便我们直接<code>pull</code>。</p>
+<h3 id="本地初始化Git仓库"><a href="#本地初始化Git仓库" class="headerlink" title="本地初始化Git仓库"></a>本地初始化Git仓库</h3><p>在项目<strong>根目录</strong>使用以下指令来创建本地仓库：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置远程仓库"><a href="#设置远程仓库" class="headerlink" title="设置远程仓库"></a>设置远程仓库</h3><p>在项目<strong>根目录</strong>使用以下来将新建的项目仓库设置成远程仓库（注意替换为自己的账户名）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/&#123;&#123;账户名&#125;&#125;/hexo-blog.git</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置构建Action"><a href="#设置构建Action" class="headerlink" title="设置构建Action"></a>设置构建Action</h3><p>使用<strong>Action</strong>来让<strong>Github</strong>在我们每次提交的时候自动部署到<code>&#123;&#123;账户名&#125;&#125;.github.io</code>。</p>
+<p>实际上，使用<strong>GithubAction</strong>的方法非常简单，就是在项目<strong>根目录</strong>下新增<code>/.github/workflows/pages.yml</code>文件，其中<code>/.github/workflows</code>是两层文件夹，而<code>pages.yml</code>的名字可以自己拟定。</p>
+<p>也可以通过<strong>Github</strong>页面进行配置，这里不做赘述。</p>
+<p>这里我给一个我用的配置（参考资料<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2369534">老猫-Leo · 【Hexo自动部署】优雅的使用 Github Actions 进行 Hexo 静态博客的持续集成与部署</a>）：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">MyPageAction</span> <span class="comment"># 脚本 workflow 名称</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span> [<span class="string">main</span>, <span class="string">master</span>] <span class="comment"># 当监测 main,master 的 push</span></span><br><span class="line">    <span class="attr">paths:</span> <span class="comment"># 监测所有 source 目录下的文件变动，所有 yml,json 后缀文件的变动。</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;*.json&#x27;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;**.yml&#x27;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;**/source/**&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">blog:</span> <span class="comment"># 任务名称</span></span><br><span class="line">    <span class="attr">timeout-minutes:</span> <span class="number">30</span> <span class="comment"># 设置 30 分钟超时</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span> <span class="comment"># 指定最新 ubuntu 系统</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span> <span class="comment"># 拉取仓库代码</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/setup-node@v2</span> <span class="comment"># 设置 node.js 环境</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Cache</span> <span class="string">node_modules</span> <span class="comment"># 缓存 node_modules，提高编译速度，毕竟每月只有 2000 分钟。</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/cache@v2</span> <span class="comment"># 亲测 Github 服务器编译速度比我自己电脑都快，如果每次构建按5分钟计算，我们每个月可以免费部署 400 次，Github yyds！！！</span></span><br><span class="line">        <span class="attr">env:</span></span><br><span class="line">          <span class="attr">cache-name:</span> <span class="string">cache-node-modules</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">~/.npm</span></span><br><span class="line">          <span class="attr">key:</span> <span class="string">$&#123;&#123;</span> <span class="string">runner.os</span> <span class="string">&#125;&#125;-build-$&#123;&#123;</span> <span class="string">env.cache-name</span> <span class="string">&#125;&#125;-$&#123;&#123;</span> <span class="string">hashFiles(&#x27;**/package-lock.json&#x27;)</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">restore-keys:</span> <span class="string">|</span></span><br><span class="line"><span class="string">            $&#123;&#123; runner.os &#125;&#125;-build-$&#123;&#123; env.cache-name &#125;&#125;-</span></span><br><span class="line"><span class="string">            $&#123;&#123; runner.os &#125;&#125;-build-</span></span><br><span class="line"><span class="string">            $&#123;&#123; runner.os &#125;&#125;-</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Init</span> <span class="string">Node.js</span> <span class="comment"># 安装源代码所需插件</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          npm install</span></span><br><span class="line"><span class="string">          echo &quot;init node successful&quot;</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">Hexo-cli</span> <span class="comment"># 安装 Hexo</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          npm install -g hexo-cli --save</span></span><br><span class="line"><span class="string">          echo &quot;install hexo successful&quot;</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span> <span class="string">Blog</span> <span class="comment"># 编译创建静态博客文件</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          hexo clean</span></span><br><span class="line"><span class="string">          hexo g</span></span><br><span class="line"><span class="string">          echo &quot;build blog successful&quot;</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">&quot;Deploy DoubleAm&#x27;s Blog&quot;</span> <span class="comment"># 设置 git 信息并推送静态博客文件</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          git config --global user.name &quot;username&quot; # 改成自己的账户名</span></span><br><span class="line"><span class="string">          git config --global user.email &quot;email&quot; # 改成自己的邮箱</span></span><br><span class="line"><span class="string">          hexo deploy</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">run:</span> <span class="string">echo</span> <span class="string">&quot;Deploy Successful!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个<strong>Action</strong>表示，当我们的项目推送时，如果配置或是资源目录有更新的话，就会自动为我们在<code>&#123;&#123;账户名&#125;&#125;.github.io</code>进行部署。</p>
+<p>从文件内容就可以看出，这里其实就是使用的本地指令来推送的，所以当后续使用了插件时，主要也要在这个配置文件中同是添加安装指令。</p>
+<h3 id="推送项目"><a href="#推送项目" class="headerlink" title="推送项目"></a>推送项目</h3><p>推送就是使用<strong>Git</strong>将本地的项目文件推送到远程仓库，总共分为两步：</p>
+<ol>
+<li><p>添加新文件</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提交到本地仓库</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;更新说明&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>推送到远程仓库</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>这里在<code>git push</code>的时候可能会失败，在配置（包括ssh密钥配置）正确的情况下，通常是因为网络错误而失败，这里就需要多推送几次才能成功。</p>
+<h3 id="查看Action以及部署页面"><a href="#查看Action以及部署页面" class="headerlink" title="查看Action以及部署页面"></a>查看Action以及部署页面</h3><p>当推送成功时，我们在项目仓库的<strong>Action</strong>记录中就可以看到工作流记录。</p>
+<p><img src="/images/hexo_obsidian_githubpages/github_action.png" alt="Action记录"></p>
+<p>但你看到<strong>绿色的√</strong>就表示成功了。此时再去到<code>&#123;&#123;账户名&#125;&#125;.github.io</code>仓库，同样可以在<code>Action</code>中看到<strong>Github</strong>自带的<strong>page-build</strong>的工作流记录。</p>
+<p><img src="/images/hexo_obsidian_githubpages/github_page_action.png" alt="PageAction记录"></p>
+<p>至此就已经成功了，可以访问<code>https://&#123;&#123;账户名&#125;&#125;.github.io</code>试试。</p>
+<h2 id="更多操作"><a href="#更多操作" class="headerlink" title="更多操作"></a>更多操作</h2><p>更多的操作这里不做介绍，只是告诉作者还有的可能性。</p>
+<ul>
+<li>添加文章评论。</li>
+<li>添加画廊（图册）。</li>
+<li>添加音乐播放器。</li>
+<li>增加站点统计功能。</li>
+<li>多层级站点管理。</li>
+<li>……</li>
+</ul>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h3 id="图片问题"><a href="#图片问题" class="headerlink" title="图片问题"></a>图片问题</h3><p>虽然<strong>Hexo</strong>提供了<code>post_asset_folder</code>参数，让作者在创建文章的时候同时创建一个<strong>同名</strong>文件夹用来存放这篇文章的资源文件。<br>但是对于才使用的作者，我还是推荐更通用的方式，就是在<code>source</code>目录下创建<code>images</code>文件夹，手动管理这些图片。</p>
+<p>只需要在文章中通过<code>/images/</code>的<strong>相对路径</strong>来添加图片，当然，你也可以在<code>images</code>目录下使用多层目录来管理不同类型或不同文章的图片。</p>
+<h3 id="部署后导致自定义域名失效"><a href="#部署后导致自定义域名失效" class="headerlink" title="部署后导致自定义域名失效"></a>部署后导致自定义域名失效</h3><p>只需要在<code>source</code>目录下增加一个<code>CNAME</code>无后缀文件，其中的内容就是自定义域名，例如<code>verlif.top</code>。</p>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41747528/article/details/102772937">桌子LZT · 解决 Hexo 部署 Github Pages 自定义域名失效的问题(即使已添加 CNAME）</a></p>
+</article>
+<div class="article-footer">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+
+</div>
+
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2024/4318/">旅行者</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2024/2780/">关于我选择内容平台的二三事（三）</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body beaudar'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="beaudar" repo="verlif/blog-commit" issue-term="pathname" theme="preferred-color-scheme" input-position="top" comment-order="desc" loading="false" branch="main"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></p>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E"><span class="toc-text">简要说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="toc-text">Hexo安装与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-text">Hexo的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">Hexo的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95"><span class="toc-text">初始化项目目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1"><span class="toc-text">启动服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0"><span class="toc-text">编写第一篇文章</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E6%96%87%E7%AB%A0"><span class="toc-text">管理文章</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Obsidian%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="toc-text">Obsidian的安装与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Obsidian%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">Obsidian的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Obsidian"><span class="toc-text">安装Obsidian</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95"><span class="toc-text">打开项目目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-text">设置（可选）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E6%96%87%E7%AB%A0"><span class="toc-text">编辑文章</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%A8%A1%E6%9D%BF"><span class="toc-text">使用模板</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E6%A8%A1%E6%9D%BF"><span class="toc-text">新建模板</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%A8%A1%E6%9D%BF-1"><span class="toc-text">使用模板</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-text">说明</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E9%85%8D%E7%BD%AE"><span class="toc-text">网站配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98"><span class="toc-text">主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF"><span class="toc-text">网站信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87"><span class="toc-text">网站图标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E9%83%A8%E7%BD%B2"><span class="toc-text">网站部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Git"><span class="toc-text">安装Git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8CGithub%E8%B4%A6%E5%8F%B7"><span class="toc-text">注册Github账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%90%AFGithubPage"><span class="toc-text">开启GithubPage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%AF%86%E9%92%A5%E6%B7%BB%E5%8A%A0"><span class="toc-text">本地密钥添加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0deploy%E6%B5%8B%E8%AF%95"><span class="toc-text">本地deploy测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-text">自动化部署（可选）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE%E4%BB%93%E5%BA%93"><span class="toc-text">新建项目仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%88%9D%E5%A7%8B%E5%8C%96Git%E4%BB%93%E5%BA%93"><span class="toc-text">本地初始化Git仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-text">设置远程仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%9E%84%E5%BB%BAAction"><span class="toc-text">设置构建Action</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E9%80%81%E9%A1%B9%E7%9B%AE"><span class="toc-text">推送项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8BAction%E4%BB%A5%E5%8F%8A%E9%83%A8%E7%BD%B2%E9%A1%B5%E9%9D%A2"><span class="toc-text">查看Action以及部署页面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E6%93%8D%E4%BD%9C"><span class="toc-text">更多操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98"><span class="toc-text">图片问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%90%8E%E5%AF%BC%E8%87%B4%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%A4%B1%E6%95%88"><span class="toc-text">部署后导致自定义域名失效</span></a></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
+</div></aside><div class='float-panel'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+
+
+<script type="text/javascript">
+  window.canonical = {"originalHost":null,"officialHosts":["localhost"],"encoded":""};
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+    tag_plugins: {
+      chat: Object.assign({"api":"https://siteinfo.listentothewind.cn/api/v1"}),
+    }
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"skip_search":null,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+    loading: `https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd`,
+  };
+  const deps = {
+    jquery: `https://gcore.jsdelivr.net/npm/jquery@3.7/dist/jquery.min.js`,
+    marked: `https://gcore.jsdelivr.net/npm/marked@13.0/lib/marked.umd.min.js`,
+    lazyload: `/%5Bobject%20Object%5D`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  
+  function RunItem() {
+    this.list = []; // 存放回调函数
+    this.start = () => {
+      for (var i = 0; i < this.list.length; i++) {
+        this.list[i].run();
+      }
+    };
+    this.push = (fn, name, setRequestAnimationFrame = true) => {
+      let myfn = fn
+      if (setRequestAnimationFrame) {
+        myfn = () => {
+          utils.requestAnimationFrame(fn)
+        }
+      }
+      var f = new Item(myfn, name);
+      this.list.push(f);
+    };
+    this.remove = (name) => {
+      for (let index = 0; index < this.list.length; index++) {
+        const e = this.list[index];
+        if (e.name == name) {
+          this.list.splice(index, 1);
+        }
+      }
+    }
+    // 构造一个可以run的对象
+    function Item(fn, name) {
+      // 函数名称
+      this.name = name || fn.name;
+      // run方法
+      this.run = () => {
+        try {
+          fn()
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    }
+  }
+
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')) {
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function () {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      const maxRetry = 3;
+      let retryCount = 0;
+
+      return new Promise((resolve, reject) => {
+        const load = () => {
+          utils.onLoading?.(el);
+
+          let timedOut = false;
+          const timeout = setTimeout(() => {
+            timedOut = true;
+            console.warn('[request] 超时:', url);
+
+            if (++retryCount >= maxRetry) {
+              utils.onLoadFailure?.(el);
+              onFailure?.();
+              reject('请求超时');
+            } else {
+              setTimeout(load, 1000);
+            }
+          }, 5000);
+
+          fetch(url).then(resp => {
+            if (timedOut) return;
+            clearTimeout(timeout);
+
+            if (!resp.ok) throw new Error('响应失败');
+            return resp;
+          }).then(data => {
+            if (timedOut) return;
+            utils.onLoadSuccess?.(el);
+            callback(data);
+            resolve(data);
+          }).catch(err => {
+            clearTimeout(timeout);
+            console.warn('[request] 错误:', err);
+
+            if (++retryCount >= maxRetry) {
+              utils.onLoadFailure?.(el);
+              onFailure?.();
+              reject(err);
+            } else {
+              setTimeout(load, 1000);
+            }
+          });
+        };
+
+        load();
+      });
+    },
+    requestWithoutLoading: (url, options = {}, maxRetry = 2, timeout = 5000) => {
+      return new Promise((resolve, reject) => {
+        let retryCount = 0;
+
+        const tryRequest = () => {
+          let timedOut = false;
+          const timer = setTimeout(() => {
+            timedOut = true;
+            if (++retryCount > maxRetry) reject('timeout');
+            else tryRequest();
+          }, timeout);
+
+          fetch(url, options)
+            .then(resp => {
+              clearTimeout(timer);
+              if (!resp.ok) throw new Error('bad response');
+              resolve(resp);
+            })
+            .catch(err => {
+              clearTimeout(timer);
+              if (++retryCount > maxRetry) reject(err);
+              else setTimeout(tryRequest, 500);
+            });
+        };
+
+        tryRequest();
+      });
+    },
+    /********************** requestAnimationFrame ********************************/
+    // 1、requestAnimationFrame 会把每一帧中的所有 DOM 操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
+    // 2、在隐藏或不可见的元素中，requestAnimationFrame 将不会进行重绘或回流，这当然就意味着更少的的 cpu，gpu 和内存使用量。
+    requestAnimationFrame: (fn) => {
+      if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
+      }
+      window.requestAnimationFrame(fn)
+    },
+    dark: {},
+  };
+
+  // utils.dark.mode 当前模式 dark or light
+  // utils.dark.toggle() 暗黑模式触发器
+  // utils.dark.push(callBack[,"callBackName"]) 传入触发器回调函数
+  utils.dark.method = {
+    toggle: new RunItem(),
+  };
+  utils.dark = Object.assign(utils.dark, {
+    push: utils.dark.method.toggle.push,
+  });
+</script>
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+<script async src="https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+    callback_loaded: (el) => {
+      el.classList.add('loaded');
+      const wrapper = el.closest('.lazy-box');
+      const icon = wrapper?.querySelector('.lazy-icon');
+      if (icon) icon.remove();
+    }
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+
+  window.wrapLazyloadImages = (container) => {
+    if (typeof container === 'string') {
+      container = document.querySelector(container);
+    }
+    if (!container) return;
+    
+    const images = container.querySelectorAll('img');
+    images.forEach((img) => {
+      if (img.classList.contains('lazy')) return;
+
+      const src = img.getAttribute('src');
+      if (!src) return;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'lazy-box';
+
+      const newImg = img.cloneNode();
+      newImg.removeAttribute('src');
+      newImg.setAttribute('data-src', src);
+      newImg.classList.add('lazy');
+
+      const icon = document.createElement('div');
+      icon.className = 'lazy-icon';
+      if (def.loading) {
+        icon.style.backgroundImage = `url("${def.loading}")`;
+      }
+
+      wrapper.appendChild(newImg);
+      wrapper.appendChild(icon);
+
+      img.replaceWith(wrapper);
+    });
+
+    // 通知 LazyLoad 更新
+    if (window.lazyLoadInstance?.update) {
+      window.lazyLoadInstance.update();
+    }
+  }
+  
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.33.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    // applyThemeToGiscus(theme)
+  }
+
+  // FIXME: 这会导致无法使用 preferred_color_scheme 以外的主题
+  const applyThemeToGiscus = (theme) => {
+    // theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+    utils.dark.mode = newTheme === 'auto' ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : newTheme;
+    utils.dark.method.toggle.start();
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    } else {
+      utils.dark.mode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    utils.dark.method.toggle.start();
+  })()
+</script>
+
+
+<!-- optional -->
+
+  <script type="module">
+  const el = document.querySelector('#comments #beaudar');
+  util.viewportLazyload(el, load_beaudar, false);
+
+  function load_beaudar() {
+    if (!el) return;
+    try {
+      el.innerHTML = '';
+    } catch (error) {
+      console.error(error);
+    }
+    const script = document.createElement('script');
+    script.src = 'https://beaudar.lipk.org/client.js';
+    script.async = true;
+    for (const key of Object.keys(el.attributes)) {
+      const attr = el.attributes[key];
+      if (['class', 'id'].includes(attr.name) === false) {
+        script.setAttribute(attr.name, attr.value);
+      }
+    }
+    el.appendChild(script);
+  }
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"rating":{"js":"/js/services/rating.js","api":"https://star-vote.xaox.cc/api/rating"},"vote":{"js":"/js/services/vote.js","api":"https://star-vote.xaox.cc/api/vote"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"friends_and_posts":{"js":"/js/services/friends_and_posts.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"voice":{"js":"/js/plugins/voice.js"},"video":{"js":"/js/plugins/video.js"},"download-file":{"js":"/js/plugins/download-file.js"},"twikoo":{"js":"/js/services/twikoo_latest_comment.js"},"waline":{"js":"/js/services/waline_latest_comment.js"},"artalk":{"js":"/js/services/artalk_latest_comment.js"},"giscus":{"js":"/js/services/giscus_latest_comment.js"},"contributors":{"edit_this_page":{"_posts/":null,"wiki/stellar/":"https://github.com/xaoxuu/hexo-theme-stellar-docs/blob/main/"},"js":"/js/services/contributors.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else if (id == 'voice') {
+        ctx.voiceAudios = document.querySelectorAll('.voice>audio');
+        if (ctx.voiceAudios?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            createVoiceDom(ctx.voiceAudios);
+          });
+        }
+      } else if (id == 'video') {
+        ctx.videos = document.querySelectorAll('.video>video');
+        if (ctx.videos?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            videoEvents(ctx.videos);
+          });
+        }
+      } else if (id == 'download-file') {
+        ctx.files = document.querySelectorAll('.file');
+        if (ctx.files?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            downloadFileEvent(ctx.files);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+
+    // chat iphone time
+    let phoneTimes = document.querySelectorAll('.chat .status-bar .time');
+
+    if (phoneTimes.length > 0) {
+      NowTime();
+      var date = new Date();
+      var sec = date.getSeconds();
+      var firstAdjustInterval = setInterval(firstAdjustTime, 1000 * (60 - sec));
+    }
+
+    function firstAdjustTime() {
+      NowTime();
+      clearInterval(firstAdjustInterval);
+      setInterval(NowTime, 1000 * 60);
+    }
+
+    function NowTime() {
+      for (let i = 0; i < phoneTimes.length; ++i) {
+        var timeSpan = phoneTimes[i];
+        var date = new Date();
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        timeSpan.innerHTML = check(hour) + ":" + check(min);
+      }
+    };
+
+    function check(val) {
+      if (val < 10) {
+        return ("0" + val);
+      }
+      return (val);
+    }
+
+    // chat quote
+    const chat_quote_obverser = new IntersectionObserver((entries, observer) => {
+      entries.filter((entry) => { return entry.isIntersecting }).sort((a, b) => a.intersectionRect.y !== b.intersectionRect.y ? a.intersectionRect.y - b.intersectionRect.y : a.intersectionRect.x - b.intersectionRect.x).forEach((entry, index) => {
+          observer.unobserve(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('quote-blink');
+            setTimeout(() => {
+              entry.target.classList.remove('quote-blink');
+            }, 1000);
+          }, Math.max(100, 16) * (index + 1));
+        });
+    });
+
+    var chatQuotes = document.querySelectorAll(".chat .talk .quote");
+    chatQuotes.forEach((quote) => {
+      quote.addEventListener('click', function () {
+        var chatCellDom = document.getElementById("quote-" + quote.getAttribute("quotedCellTag"));
+        if (chatCellDom) {
+          var chatDiv = chatCellDom.parentElement;
+          var mid = chatDiv.clientHeight / 2;
+          var offsetTop = chatCellDom.offsetTop;
+          if (offsetTop > mid - chatCellDom.clientHeight / 2) {
+            chatDiv.scrollTo({
+              top: chatCellDom.offsetTop - mid + chatCellDom.clientHeight / 2,
+              behavior: "smooth"
+            });
+          } else {
+            chatDiv.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+          }
+          chat_quote_obverser.observe(chatCellDom);
+        }
+      });
+    });
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://gcore.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error), .with-fancybox .atk-content img:not([atk-emoticon])';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const memos = document.getElementsByClassName('ds-memos');
+    if (memos != undefined && memos.length > 0) {
+      needFancybox = true;
+    }
+    const fancybox = document.getElementsByClassName('with-fancybox');
+    if (fancybox != undefined && fancybox.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>
