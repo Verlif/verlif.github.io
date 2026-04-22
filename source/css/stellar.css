@@ -1,3 +1,13 @@
+:root {
+  --text: #ff8f21;
+  --text-p1: #e1e1e1;
+  --text-p2: #cecece;
+  --text-p3: #e1e1e1;
+  --text-p4: white;
+  --text-code: #56beff;
+  --fsp: 18px;
+}
+
 /* 文字黑幕 */
 .mask {
   background-color: #252525;
@@ -17,6 +27,18 @@
 /* 背景 */
 body>.sitebg .siteblur {
   backdrop-filter: blur(var(--blur-px)) brightness(0.6);
+}
+
+.navbar-blur {
+  text-shadow: unset;
+}
+
+.navbar nav a.active {
+  background: hsl(0deg 0% 0% / 60%);
+}
+
+.navbar-blur nav a:not(.active, .navbar-blur :hover) {
+  filter: unset;
 }
 
 /* 鼠标悬浮文字上移 */
