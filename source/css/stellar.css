@@ -187,3 +187,7 @@ html body {
 .related-wrap {
   margin: 1rem 0;
 }
+
+.related-wrap#comments .cmt-body svg.loading {
+  display: none;
+}
